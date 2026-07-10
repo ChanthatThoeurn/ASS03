@@ -7,10 +7,10 @@ public record OrderResponse(
         UUID id,
         String customerId,
         String address,
-        Float discord,
+        Float discount,
         String remark,
         Boolean status,
-        LocalDateTime orderAt,
+        LocalDateTime orderedAt,
         Boolean isDeleted
 ) {
 }

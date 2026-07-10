@@ -20,6 +20,11 @@ repositories {
 
 dependencies {
     // MapStruct and Lombok
+    implementation 'org.keycloak:keycloak-admin-client:26.0.10'
+
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-security-oauth2-resource-server'
+    testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
     implementation 'org.mapstruct:mapstruct:1.5.5.Final'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'

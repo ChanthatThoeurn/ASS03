@@ -11,7 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "orders")
-public class Oder {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -26,9 +26,13 @@ public class Oder {
     private String remark;
     @Column(nullable = false)
     private LocalDateTime createdAt;
-
+    @Column(nullable = false)
     private boolean isDeleted = false;
 
-    @OneToMany(mappedBy = "order" ,  cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "order" ,  cascade = CascadeType.ALL)
     private List<OrderLine> orderLines;
+
+
 }
+
+

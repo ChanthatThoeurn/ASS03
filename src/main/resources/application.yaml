@@ -4,6 +4,11 @@ file:
   base-uri: http://localhost:${server.port}${file.client-path}
 
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9999/realms/ecommerce
   jpa:
     hibernate:
       ddl-auto: update
@@ -24,5 +29,10 @@ spring:
       max-file-size: 10MB
       max-request-size: 20MB
 server:
-  port: 9696
+  port: 9797
+keycloak:
+  server-url: http://localhost:9999
+  client-id: ecommerce-spring
+  client-secret: Wut4G4V361FCuGrrOYCJbc95CDqpy64g
+  target-realm: ecommerce
 

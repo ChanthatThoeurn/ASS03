@@ -14,11 +14,15 @@ public class OrderLine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @ManyToOne
-    private Oder order;
+    private Order order;
     @ManyToOne
     private Product product;
+
+    @Column(nullable = false)
     private Integer qty;
+    @Column(nullable = false)
     private BigDecimal UnitPrice;
 
 }

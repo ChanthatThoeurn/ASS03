@@ -34,16 +34,28 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductResponse CreateProducts(CreateProductRequest request) {
-         //Step 1 : validation
-         if(productRepository.existsByName(request.name())){
-             throw new ResponseStatusException(HttpStatus.CONFLICT,
-                     "Product name has already been exists");
-         }
-         // validation category
-        Category category = categoryRepository.findById(request.categoryId()).
-                orElseThrow(()->
-                        new ResponseStatusException(HttpStatus.CONFLICT));
-          // map data to dto
+
+        if (productRepository.existsByName(request.name())) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "Product name already exists"
+            );
+        }
+
+        if (request.categoryId() == null) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Category ID is required"
+            );
+        }
+
+        Category category = categoryRepository.findById(request.categoryId())
+                .orElseThrow(() ->
+                        new ResponseStatusException(
+                                HttpStatus.NOT_FOUND,
+                                "Category not found"
+                        ));
+
         Product product = productMapper.mapProductToDTO(request);
         product.setPrice(request.unitPrice());
         product.setCategory(category);
@@ -52,8 +64,8 @@ public class ProductServiceImpl implements ProductService {
         product.setIsAvailable(true);
         product.setIsDeleted(false);
 
-        // map dto to data
         product = productRepository.save(product);
+
         return productMapper.mapDTOToResponse(product);
     }
 }
