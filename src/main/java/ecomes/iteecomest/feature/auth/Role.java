@@ -1,5 +1,5 @@
 package ecomes.iteecomest.feature.auth;
 
 public enum Role {
-    USER,CUSTOMER
+    USER,CUSTOMER,STAFF,ADMIN,SUPER_ADMIN
 }

@@ -1,9 +1,8 @@
 package ecomes.iteecomest.feature.userProfile;
+import ecomes.iteecomest.feature.userProfile.dto.UpdateUserProfileRequest;
 import ecomes.iteecomest.feature.userProfile.dto.UserProfileResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/user-profiles")
@@ -13,6 +12,13 @@ public class UserProfileController {
     @GetMapping("/me")
     public UserProfileResponse me() {
         return userProfileService.me();
+    }
+
+    @PatchMapping("/me")
+    public UserProfileResponse updateProfile(
+            @RequestBody UpdateUserProfileRequest updateUserProfileRequest
+    ) {
+        return userProfileService.updateProfile(updateUserProfileRequest);
     }
 
 }

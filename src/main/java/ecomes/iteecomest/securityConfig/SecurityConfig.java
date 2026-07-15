@@ -61,6 +61,11 @@ public class SecurityConfig {
         // Configure endPoint
         http.authorizeHttpRequests(endpoints ->
                 endpoints
+                        .requestMatchers(
+                                "/v3/api-docs/**",
+                                "/swagger-ui.html",
+                                "/swagger-ui/**"
+                        ).permitAll()
                         .requestMatchers("/api/v1/files/**").permitAll()
                         .requestMatchers("/api/v1/auth/register").permitAll()
                 .anyRequest().authenticated()
